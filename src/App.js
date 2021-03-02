@@ -1,25 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Nav from "./Components/Nav";
+import HomeBody from "./Components/HomeBody";
+import pokemon from "pokemontcgsdk";
 
-function App() {
+const API_KEY = "06e7f442-7fef-42f2-b382-94c7e94a56e3";
+
+pokemon.configure({ apiKey: API_KEY });
+
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Nav />
+      <HomeBody />
     </div>
   );
-}
+};
 
 export default App;
