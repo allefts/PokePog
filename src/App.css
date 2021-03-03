@@ -5,6 +5,16 @@
   --quaternary-color: #262c45;
 }
 
+@font-face {
+  font-family: PokemonFont;
+  src: url("./Assets/Pokemon Hollow.ttf");
+}
+
+@font-face {
+  font-family: PokemonFontSolid;
+  src: url("./Assets/Pokemon Solid.ttf");
+}
+
 html {
   background-color: var(--quaternary-color);
 }

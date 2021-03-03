@@ -1,17 +1,24 @@
 import "./App.css";
 import Nav from "./Components/Nav";
-import HomeBody from "./Components/HomeBody";
-import pokemon from "pokemontcgsdk";
-
-const API_KEY = "06e7f442-7fef-42f2-b382-94c7e94a56e3";
-
-pokemon.configure({ apiKey: API_KEY });
+import MainSetContent from "./Components/MainSetContent";
+// import SetCards from "./Components/SetCards";
+import FetchCards from "./Components/FetchCards";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 const App = () => {
   return (
     <div className="App">
-      <Nav />
-      <HomeBody />
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Nav />
+            <MainSetContent />
+          </Route>
+          <Route exact path="/sets/:id" component={FetchCards}>
+            {/* <FetchCards /> */}
+          </Route>
+        </Switch>
+      </Router>
     </div>
   );
 };

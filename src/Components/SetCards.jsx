@@ -1,48 +1,58 @@
 import React from "react";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import styled from "styled-components";
+import { Card, CardMedia, CardActionArea } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { BrowserRouter as Router, useHistory } from "react-router-dom";
 
-//IMAGE
+const useStyles = makeStyles({
+  card: {
+    background: "transparent",
+    width: "375px",
+    height: "300px",
+    border: "none",
+    outline: "none",
+    margin: "40px",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    boxShadow: "none",
+    backgroundColor: "rgba(63, 81, 181, 0.1)",
+    transition: "all .5s ease",
+    "&:hover": {
+      transform: "scaleX(1.1) scaleY(1.1)",
+    },
+  },
+  cardAction: {
+    width: "100%",
+    height: "100%",
+    margin: "0",
+  },
+  cardMedia: {
+    width: "80%",
+    margin: " 0 auto",
+  },
+});
 
-const StyledCard = styled.div`
-  .set-card {
-    margin: 10px;
-    background-color: #151828;
-    color: white;
-  }
-
-  .card {
-    padding: 1rem 6rem;
-    height: 400px;
-    width: 100%;
-  }
-
-  .card-writing {
-    font-family: "Franklin Gothic Medium", "Helvetica", sans-serif;
-  }
-
-  .card-media {
-    width: 400px;
-  }
-`;
-
-const SetCards = ({ imageSrc, title }) => {
+const SetCards = ({ setImage, setTitle, setId }) => {
+  const classes = useStyles();
+  const history = useHistory();
   return (
-    <StyledCard>
-      <Card className="set-card">
-        <CardActionArea className="card">
-          <CardMedia
-            className="card-media"
-            component="img"
-            image={imageSrc}
-            title={title}
-          />
-        </CardActionArea>
-      </Card>
-    </StyledCard>
+    <Router>
+      <div>
+        <Card
+          className={classes.card}
+          onClick={() => history.push(`/sets/${setId}`)}
+        >
+          <CardActionArea className={classes.cardAction}>
+            <CardMedia
+              className={classes.cardMedia}
+              component="img"
+              image={setImage}
+              title={setTitle}
+            />
+          </CardActionArea>
+        </Card>
+      </div>
+    </Router>
   );
 };
 
