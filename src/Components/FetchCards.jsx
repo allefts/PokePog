@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 
-import pokemon from "pokemontcgsdk";
-const API_KEY = "06e7f442-7fef-42f2-b382-94c7e94a56e3";
-pokemon.configure({ apiKey: API_KEY });
+// import pokemon from "pokemontcgsdk";
+// const API_KEY = "06e7f442-7fef-42f2-b382-94c7e94a56e3";
+// pokemon.configure({ apiKey: API_KEY });
 
 // const useStyles = makeStyles({});
 
@@ -26,12 +26,10 @@ const FetchCards = () => {
     fetch(`https://api.pokemontcg.io/v2/cards?q=set.id:${id}`)
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         setCardsObject(lookForRarity(result.totalCount, result));
       });
   }, []);
-
-  let cardsFound = [];
 
   let cardSpecs = [
     {
@@ -71,6 +69,7 @@ const FetchCards = () => {
     }
 
     console.log(finishedPack);
+
     // for (let i = 0; i < 10; i++) {
     //   let randomNum = Math.floor(Math.random() * (totalCount - 1)) + 1;
     //   //   console.log(randomNum);
