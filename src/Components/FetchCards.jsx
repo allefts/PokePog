@@ -15,13 +15,6 @@ const FetchCards = () => {
   const [cardsObject, setCardsObject] = useState([]);
   const { id } = useParams();
 
-  //   useEffect(async () => {
-  //     const result = await axios(
-  //       `https://api.pokemontcg.io/v2/cards?q=set.id:${id}`
-  //     );
-  //     lookForCards(result.totalCount, result);
-  //   }, []);
-
   useEffect(() => {
     fetch(`https://api.pokemontcg.io/v2/cards?q=set.id:${id}`)
       .then((res) => res.json())
@@ -86,22 +79,41 @@ const FetchCards = () => {
     return finishedPack;
   }
 
+  var energyCardFound = false;
   function findCards(entireSet, rarity, cardsFound, max) {
     let randomNum;
 
     while (cardsFound.length !== max) {
       randomNum = Math.floor(Math.random() * (entireSet.data.length - 1)) + 1;
 
+      // var foundEnergy = false;
+
+      // if (
+      //   entireSet.data[randomNum].supertype === "Energy" &&
+      //   foundEnergy !== true
+      // ) {
+      //   foundEnergy = true;
+      // }
+
       if (
+        //CHECKS IF ITS A SUPER RARE, IF IT IS PUSH IT TO ARRAY
         rarity === "SUPER DUPER RARE" &&
         (entireSet.data[randomNum].rarity.length > 8 ||
-          entireSet.data[randomNum].rarity === "Rare ACE")
+          entireSet.data[randomNum].rarity === "Rare ACE") //CHECKS FOR ANY RARITY THAT IS MORE THAN 8 CHARS LONG AND MAYBE A RARE ACE
       ) {
         cardsFound.push(entireSet.data[randomNum]);
-      }
-      if (
-        entireSet.data[randomNum].rarity === rarity &&
-        !cardsFound.includes(entireSet.data[randomNum])
+      } else if (
+        //IF CARD IS ENERGY CARD, PUSH TO
+        entireSet.data[randomNum].supertype === "Energy" && //CHECKS IF CARD IS ENERGY AND ONE HAS NOT BEEN FOUND YET
+        energyCardFound === false
+      ) {
+        energyCardFound = true;
+        cardsFound.push(entireSet.data[randomNum]); //PUSHES TO ARRAY AND SETS ENERGY CARD FOUND TO TRUE SO NO MORE ENERGY CARDS
+      } else if (
+        //CHECKS IF RARITY OF CARD IS EQUAL TO CURRENT OBJECT RARITY, IF SO AND CARD HAS NOT BEEN FOUND YET, PUSH TO ARRAY
+        entireSet.data[randomNum].rarity === rarity && //CHECKS FOR SAME RARITY
+        !cardsFound.includes(entireSet.data[randomNum]) && //IF CARD IS ALREADY IN ARRAY, DONT PUSH
+        entireSet.data[randomNum].supertype !== "Energy" //MAKES SURE TO NOT ADD MORE THAN 1 ENERGY
       ) {
         cardsFound.push(entireSet.data[randomNum]);
       }
