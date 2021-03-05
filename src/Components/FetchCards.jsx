@@ -7,19 +7,18 @@ import { makeStyles } from "@material-ui/core/styles";
 // const API_KEY = "06e7f442-7fef-42f2-b382-94c7e94a56e3";
 // pokemon.configure({ apiKey: API_KEY });
 
-// const useStyles = makeStyles({});
-
 const FetchCards = () => {
-  //   const classes = useStyles();
+  const classes = useStyles();
   //   const [totalPrinted, setTotalPrinted] = useState(0);
   const [cardsObject, setCardsObject] = useState([]);
+  // const [raritiesFound, setRaritiesFound] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
     fetch(`https://api.pokemontcg.io/v2/cards?q=set.id:${id}`)
       .then((res) => res.json())
       .then((result) => {
-        // console.log(result);
+        console.log(result);
         setCardsObject(lookForRarity(result.totalCount, result));
       });
   }, []);
@@ -48,8 +47,29 @@ const FetchCards = () => {
   ];
 
   var finishedPack = [];
+  var raritiesFound = [];
 
   function lookForRarity(totalCount, entireSet) {
+    for (const rarityOfCard of entireSet.data) {
+      if (!raritiesFound.includes(rarityOfCard.rarity)) {
+        raritiesFound.push(rarityOfCard.rarity);
+      }
+    }
+
+    console.log(raritiesFound);
+
+    if (!raritiesFound.includes("Rare")) {
+      cardSpecs[2].max = 0;
+      cardSpecs[3].max = 2;
+    } else if (!raritiesFound.includes("Uncommon")) {
+      cardSpecs[1].max = 0;
+      cardSpecs[0].max = 8;
+    } else {
+      cardSpecs[0].max = 5;
+      cardSpecs[1].max = 3;
+      cardSpecs[2].max = 1;
+      cardSpecs[3].max = 1;
+    }
     for (const setRarity of cardSpecs) {
       finishedPack = finishedPack.concat(
         findCards(
@@ -62,38 +82,16 @@ const FetchCards = () => {
     }
 
     console.log(finishedPack);
-
-    // for (let i = 0; i < 10; i++) {
-    //   let randomNum = Math.floor(Math.random() * (totalCount - 1)) + 1;
-    //   //   console.log(randomNum);
-    //   //   console.log(entireSet.data[randomNum].name);
-    //   cardsFound = [
-    //     ...cardsFound,
-    //     {
-    //       name: entireSet.data[randomNum].name,
-    //       picture: entireSet.data[randomNum].images.small,
-    //       id: i,
-    //     },
-    //   ];
-    // }
     return finishedPack;
   }
 
-  var energyCardFound = false;
+  let energyCardFound = false;
+
   function findCards(entireSet, rarity, cardsFound, max) {
     let randomNum;
 
     while (cardsFound.length !== max) {
       randomNum = Math.floor(Math.random() * (entireSet.data.length - 1)) + 1;
-
-      // var foundEnergy = false;
-
-      // if (
-      //   entireSet.data[randomNum].supertype === "Energy" &&
-      //   foundEnergy !== true
-      // ) {
-      //   foundEnergy = true;
-      // }
 
       if (
         //CHECKS IF ITS A SUPER RARE, IF IT IS PUSH IT TO ARRAY
@@ -125,7 +123,6 @@ const FetchCards = () => {
   const renderCards = cardsObject.map((card, index) => {
     return (
       <div key={card.id}>
-        <h2>{card.name}</h2>
         <img src={card.images.small} alt={card.name} />
         <h2>{card.image}</h2>
       </div>
@@ -134,9 +131,18 @@ const FetchCards = () => {
 
   return (
     <div>
-      <div>{renderCards}</div>
+      <div className={classes.cardContainer}>{renderCards}</div>
     </div>
   );
 };
+
+const useStyles = makeStyles({
+  cardContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    flexFlow: "wrap row",
+  },
+});
 
 export default FetchCards;
