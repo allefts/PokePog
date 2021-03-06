@@ -7,10 +7,9 @@ const useStyles = makeStyles({
   card: {
     background: "transparent",
     width: "375px",
-    height: "300px",
-    border: "none",
+    height: "200px",
     outline: "none",
-    margin: "40px",
+    // border: "2px solid #3f51b5",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -27,7 +26,7 @@ const useStyles = makeStyles({
     margin: "0",
   },
   cardMedia: {
-    width: "80%",
+    width: "60%",
     margin: " 0 auto",
   },
 });

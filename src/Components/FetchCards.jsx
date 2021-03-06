@@ -124,7 +124,6 @@ const FetchCards = () => {
     return (
       <div key={card.id}>
         <img src={card.images.small} alt={card.name} />
-        <h2>{card.image}</h2>
       </div>
     );
   });
