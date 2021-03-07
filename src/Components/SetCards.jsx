@@ -9,7 +9,6 @@ const useStyles = makeStyles({
     width: "375px",
     height: "200px",
     outline: "none",
-    // border: "2px solid #3f51b5",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
@@ -18,6 +17,8 @@ const useStyles = makeStyles({
     transition: "all .5s ease",
     "&:hover": {
       transform: "scaleX(1.1) scaleY(1.1)",
+      // backgroundColor: "rgba(245, 232, 111, 0.8);",
+      backgroundColor: "#1e9f43",
     },
   },
   cardAction: {

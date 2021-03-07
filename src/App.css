@@ -20,12 +20,27 @@
   src: url("./Assets//LEMONMILK.otf");
 }
 
+@font-face {
+  font-family: Akira;
+  src: url("./Assets//Akira.otf");
+}
+
+* {
+  box-sizing: border-box;
+}
+
 html {
   background-color: var(--quaternary-color);
 }
 
+html,
 body {
+  height: 100%;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+.homePage {
+  height: 100vh;
 }

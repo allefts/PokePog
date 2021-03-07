@@ -2,25 +2,25 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
+import OpenPack from "./OpenPack";
 
 // import pokemon from "pokemontcgsdk";
 // const API_KEY = "06e7f442-7fef-42f2-b382-94c7e94a56e3";
 // pokemon.configure({ apiKey: API_KEY });
 
 const FetchCards = () => {
-  const classes = useStyles();
-  //   const [totalPrinted, setTotalPrinted] = useState(0);
   const [cardsObject, setCardsObject] = useState([]);
-  // const [raritiesFound, setRaritiesFound] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
 
-  useEffect(() => {
-    fetch(`https://api.pokemontcg.io/v2/cards?q=set.id:${id}`)
-      .then((res) => res.json())
+  useEffect(async () => {
+    await fetch(`https://api.pokemontcg.io/v2/cards?q=set.id:${id}`)
+      .then(async (res) => await res.json())
       .then((result) => {
         console.log(result);
         setCardsObject(lookForRarity(result.totalCount, result));
       });
+    setIsLoading(false);
   }, []);
 
   let cardSpecs = [
@@ -56,7 +56,7 @@ const FetchCards = () => {
       }
     }
 
-    console.log(raritiesFound);
+    // console.log(raritiesFound);
 
     if (!raritiesFound.includes("Rare")) {
       cardSpecs[2].max = 0;
@@ -81,7 +81,7 @@ const FetchCards = () => {
       );
     }
 
-    console.log(finishedPack);
+    // console.log(finishedPack);
     return finishedPack;
   }
 
@@ -130,7 +130,8 @@ const FetchCards = () => {
 
   return (
     <div>
-      <div className={classes.cardContainer}>{renderCards}</div>
+      {/* <div className={classes.cardContainer}>{renderCards}</div> */}
+      {isLoading ? <h1>LOADING WAIT</h1> : <OpenPack pack={cardsObject} />}
     </div>
   );
 };

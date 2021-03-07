@@ -8,25 +8,26 @@ const StyledNav = styled.div`
     font-family: "LemonMilk", "Helvetica", sans-serif;
     font-size: 2rem;
     text-decoration: none;
-    color: inherit;
   }
 
   .navbar {
-    height: 5rem;
+    height: 4rem;
+    position: fixed;
+    top: 0;
     display: flex;
     justify-content: center;
-    // background-color: rgba(30, 159, 67, 1);
-    background-color: transparent;
+    background-color: rgba(30, 159, 67, 1);
+    color: black;
     box-shadow: none;
   }
 `;
 
-const Nav = () => {
+const Nav = ({ title, position }) => {
   return (
     <StyledNav>
       <AppBar className="navbar" position="static">
         <Toolbar variant="dense">
-          <a className="title">POKEPOGCHAMP</a>
+          <a className="title">{title}</a>
         </Toolbar>
       </AppBar>
     </StyledNav>

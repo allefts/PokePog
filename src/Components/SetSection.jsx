@@ -12,31 +12,26 @@ const useStyles = makeStyles({
   title: {
     margin: "0",
     textAlign: "center",
-    fontFamily: "LemonMilk",
-    // color: "yellow",
-    color: "rgba(30, 159, 67, 1)",
-    letterSpacing: "5pt",
+    padding: "1rem",
+    fontFamily: "Montserrat",
+    color: "white",
     fontSize: "3rem",
   },
   line: {
     textAlign: "center",
-    margin: "10px auto 20px auto",
+    // margin: "10px auto 20px auto",
     width: "100%",
-    border: "3px solid white",
+    border: "2px solid  rgba(30, 159, 67, 1);",
   },
   cardContainer: {
-    // display: "flex",
-    // justifyContent: "center",
-    // flexFlow: "wrap row",
-    // alignItems: "center",
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit, minmax(500px, 1fr))",
-    gridGap: "40px",
+    gridGap: "30px",
     alignItems: "center",
     justifyItems: "center",
   },
   SetTitleWrapper: {
-    padding: "3rem",
+    padding: "2rem",
   },
 });
 
