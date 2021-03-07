@@ -120,13 +120,13 @@ const FetchCards = () => {
     return cardsFound;
   }
 
-  const renderCards = cardsObject.map((card, index) => {
-    return (
-      <div key={card.id}>
-        <img src={card.images.small} alt={card.name} />
-      </div>
-    );
-  });
+  // const renderCards = cardsObject.map((card, index) => {
+  //   return (
+  //     <div key={card.id}>
+  //       <img src={card.images.small} alt={card.name} />
+  //     </div>
+  //   );
+  // });
 
   return (
     <div>

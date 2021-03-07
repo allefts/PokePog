@@ -62,13 +62,6 @@ import BaseSet1 from "../Assets/BaseSet1.png";
 import Fossil from "../Assets/Fossil.png";
 import Jungle from "../Assets/Jungle.png";
 
-// allSets[0].setTitle == "Sword & Shield"
-// allSets[0].SwordShield[0].title == "Shining Fates"
-
-// allsets.map((set, index) => {
-//      return <h1></h1>
-// })
-
 const allSets = [
   {
     setTitle: "Sword & Shield",
@@ -174,15 +167,6 @@ const allSets = [
     ],
   },
   {
-    /*
-    import StormFront from "../Assets/StormFront.png";
-    import LegendsAwakened from "../Assets/LegendsAwakened.png"; //dp6
-    import MajesticDawn from "../Assets/MajesticDawn.png"; //dp5
-    import GreatEncounters from "../Assets/GreatEncounters.png"; //dp4
-    import SecretWonder from "../Assets/SecretWonders.png"; //dp3
-    import MysteriousTreasures from "../Assets/MysteriousTreasures.png"; //dp2
-    */
-
     setTitle: "Diamond & Pearl",
     setSets: [
       {
@@ -245,25 +229,4 @@ const allSets = [
   },
 ];
 
-/*
-import TeamRocket from "../Assets/TeamRocket.png";
-import BaseSet2 from "../Assets/BaseSet2.png";
-import BaseSet1 from "../Assets/BaseSet1.png";
-
-import PlatinumArceus from "../Assets/PlatinumArceus.png";
-import PlatinumSupremeVictors from "../Assets/PlatinumSupremeVictors.png";
-import PlatinumRisingRivals from "../Assets/PlatinumRisingRivals.png";
-import Platinum from "../Assets/Platinum.png";
-
-import PlasmaBlast from "../Assets/PlasmaBlast.png";
-import PlasmaFreeze from "../Assets/PlasmaFreeze.png";
-import BlackWhite from "../Assets/Black&White.png";
-import DragonsExalted from "../Assets/DragonsExalted.png";
-import DarkExplorer from "../Assets/DarkExplorer.png";
-import NextDestinies from "../Assets/NextDestinies.png";
-
-
-import HeartGoldSoulSilver from "../Assets/HeartGold&SoulSilver.png";
-
-*/
 export default allSets;

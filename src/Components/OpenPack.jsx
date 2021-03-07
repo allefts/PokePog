@@ -9,29 +9,35 @@ const StyledPackOpening = styled.div`
   }
 
   .packNav {
-    padding: 2rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
     background: #1e9f43;
   }
 
   .packNavHeader {
-    margin: 0;
+    margin-left: 20px;
   }
 
   .card-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(358px, 1fr));
     grid-gap: 10px;
+    position: relative;
   }
 
   .card {
     width: 358px;
     height: 497px;
     position: relative;
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
     border-radius: 10px;
     transform-style: preserve-3d;
     border-radius: 20px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-    transition: all 1s ease;
+    transition: all 1.5s ease;
   }
 
   .flipped {
@@ -71,40 +77,109 @@ const StyledPackOpening = styled.div`
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
+    transition: all 1s ease;
+    &:hover {
+      //   box-shadow: 0px 5px 25px 15px #3387ff;
+      //   box-shadow: 0px 5px 25px 15px #8c6fbf;
+      //   box-shadow: 0px 5px 25px 15px #c7c520;
+      //   box-shadow: 0px 5px 25px 25px #efeddd;
+      transform: scaleX(1.01) scaleY(1.01);
+    }
   }
 `;
 
+const StyledCard = styled.div`
+  width: 358px;
+  height: 497px;
+  position: relative;
+  // position: absolute;
+  // top: 50%;
+  // left: 50%;
+  border-radius: 10px;
+  transform-style: preserve-3d;
+  border-radius: 20px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  transition: all 1.5s ease;
+
+  &:hover {
+    box-shadow: ${(props) => {
+      if (props.rarity === "Common") {
+        return "0px 5px 25px 15px #efeddd";
+      } else if (props.rarity === "Uncommon") {
+        return "0px 5px 25px 15px #3387ff";
+      } else if (props.rarity === "Rare") {
+        return "0px 5px 25px 20px #8c6fbf";
+      } else {
+        return "0px 5px 25px 20px #c7c520";
+      }
+    }}
+`;
+
+const allCards = document.getElementsByClassName("card");
+
 const OpenPack = ({ pack }) => {
   const [cardFronts, setCardFronts] = useState([]);
-  const [isFlipped, setFlipCard] = useState(false);
 
   useEffect(() => {
     setCardFronts(pack);
+    console.log(pack);
   }, []);
 
+  let raritiesInPack = [];
+
+  const rarityBoxShadows = [
+    {
+      rarity: "Common",
+      boxShadow: "box-shadow: 0 5px 15px 20px 5px rgba(145, 92, 182, .4)",
+    },
+    {
+      rarity: "Uncommon",
+      boxShadow: "box-shadow: 0px 5px 20px 5px #3387ff",
+    },
+    {
+      rarity: "Rare",
+      boxShadow: "box-shadow: 0px 5px 20px 5px #8c6fbf",
+    },
+    {
+      rarity: "SUPER DUPER RARE",
+      boxShadow: "box-shadow: 0px 5px 20px 5px #c7c520",
+    },
+  ];
+
+  const handleCardFlip = (index) => {
+    allCards[index].classList.toggle("flipped");
+  };
+
   const renderCards = cardFronts.map((cardFront, index) => {
+    raritiesInPack.push(cardFront.rarity);
     return (
-      <div
-        className={!isFlipped ? `card` : `card flipped`}
+      <StyledCard
+        className="card"
         onClick={() => {
-          setFlipCard(!isFlipped);
+          handleCardFlip(index);
         }}
+        rarity={cardFront.rarity}
       >
+        {/* <div */}
+        {/* // className="card" */}
+        {/* onClick={() => { */}
+        {/* handleCardFlip(index); */}
+        {/* }} */}
+        {/* > */}
         <div className="backOfCard"></div>
         <div
           className="frontOfCard"
           style={{ backgroundImage: `url(${cardFront.images.small})` }}
         ></div>
-      </div>
+        {/* </div> */}
+      </StyledCard>
     );
   });
 
   return (
     <StyledPackOpening>
       <div className="packNav">
-        <h1 className="packNavHeader">
-          FUCKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK
-        </h1>
+        <h1 className="packNavHeader">PACKS</h1>
       </div>
       <div className="packOpeningHeader">
         <div className="card-container">{renderCards}</div>
