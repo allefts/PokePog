@@ -5,7 +5,6 @@ import SetHeader from "./Components/SetHeader";
 import HomeAbout from "./Components/HomeAbout";
 import HomeDescription from "./Components/HomeDescription";
 import FetchCards from "./Components/FetchCards";
-import Footer from "./Components/Footer";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 const App = () => {
@@ -24,8 +23,9 @@ const App = () => {
             <SetHeader />
             <MainSetContent />
           </Route>
-          <Route exact path="/sets/:id" component={FetchCards}>
-            {/* <FetchCards /> */}
+          <Route exact path="/sets/:id">
+            <Nav title="POKEPAX" />
+            <FetchCards />
           </Route>
         </Switch>
       </Router>

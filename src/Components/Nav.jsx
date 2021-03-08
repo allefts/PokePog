@@ -23,7 +23,7 @@ const StyledNav = styled.div`
 
   .navbar {
     height: 4rem;
-    position: fixed;
+    // position: fixed;
     top: 0;
     display: flex;
     justify-content: center;
