@@ -5,6 +5,7 @@ import SetHeader from "./Components/SetHeader";
 import HomeAbout from "./Components/HomeAbout";
 import HomeDescription from "./Components/HomeDescription";
 import FetchCards from "./Components/FetchCards";
+import Footer from "./Components/Footer";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 const App = () => {
