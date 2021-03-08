@@ -18,11 +18,11 @@ const StyledHomeDescription = styled.div`
     cursor: pointer;
     background: rgba(30, 159, 67, 0.6);
     color: black;
-    border-bottom: 4px solid white;
+    border-bottom: 4px solid black;
     transition: all 0.5ms;
     text-decoration: none;
     &:hover {
-      border-bottom: 4px solid black;
+      border-bottom: 4px solid white;
     }
   }
 

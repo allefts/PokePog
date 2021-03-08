@@ -12,17 +12,47 @@ const StyledFooter = styled.div`
     bottom: 0;
     right: 0;
     display: flex;
-    flex-flow: column;
+    flex-flow: row;
     justify-content: space-evenly;
     align-items: center;
-    
+
+    .footer-description{
+      font-family: Montserrat;
+      font-size: 1.2em;
+      margin: 0;
+    }
+
+    .pokemon-api{
+      cursor: pointer;
+      color: white;
+
+      a{
+        text-decoration: none;
+        color: inherit;
+      }
+    }
   }
 `;
 
 const Footer = () => {
   return (
     <StyledFooter>
-      <div className="footer-wrapper"></div>;
+      <div className="footer-wrapper">
+        <p className="footer-description">
+          All data made available by the{" "}
+          <span className="pokemon-api">
+            {" "}
+            <a target="_blank" rel="noreferrer" href="https://pokemontcg.io/">
+              Pokémon TCG API
+            </a>
+          </span>
+        </p>
+        <p className="footer-description">
+          This website is not produced, endorsed, supported, or affiliated with
+          Nintendo or The Pokémon Company.
+        </p>
+      </div>
+      ;
     </StyledFooter>
   );
 };

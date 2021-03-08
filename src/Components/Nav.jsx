@@ -8,6 +8,17 @@ const StyledNav = styled.div`
     font-family: "LemonMilk", "Helvetica", sans-serif;
     font-size: 2rem;
     text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    margin: 0 1rem;
+    &:hover {
+      color: white;
+    }
+  }
+
+  .divider {
+    font-size: 2rem;
+    font-family: LemonMilk;
   }
 
   .navbar {
@@ -27,7 +38,13 @@ const Nav = ({ title, position }) => {
     <StyledNav>
       <AppBar className="navbar" position="static">
         <Toolbar variant="dense">
-          <a className="title">{title}</a>
+          <a className="title" href="/">
+            {title}
+          </a>
+          <p className="divider">/</p>
+          <a className="title" href="/sets">
+            Sets
+          </a>
         </Toolbar>
       </AppBar>
     </StyledNav>

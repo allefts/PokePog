@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Nav from "./Nav";
 
 const StyledSetNav = styled.div`
   .setsTitle {
@@ -8,6 +9,11 @@ const StyledSetNav = styled.div`
     text-decoration: none;
     margin: 0 0 0 20px;
     font-weight: 400;
+    color: inherit;
+    text-decoration: none;
+    &:hover {
+      color: white;
+    }
   }
 
   display: flex;
@@ -20,7 +26,12 @@ const StyledSetNav = styled.div`
 const SetHeader = () => {
   return (
     <StyledSetNav>
-      <h1 className="setsTitle">Sets</h1>
+      <Nav title={"POKEPAX"} />
+      {/* <h1>
+        <a className="setsTitle" href="/">
+          Sets
+        </a>
+      </h1> */}
     </StyledSetNav>
   );
 };

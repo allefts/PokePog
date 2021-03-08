@@ -1,9 +1,17 @@
 import React from "react";
-import { Container } from "@material-ui/core";
+import { Container, Grid } from "@material-ui/core";
 import SetCards from "./SetCards";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
+  something: {
+    width: "100%",
+  },
+  gridItem: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
   setSection: {
     width: "100%",
     minHeight: "500px",
@@ -20,18 +28,20 @@ const useStyles = makeStyles({
   line: {
     textAlign: "center",
     // margin: "10px auto 20px auto",
-    width: "100%",
+    width: "80%",
+    margin: "0 auto",
     border: "2px solid  rgba(30, 159, 67, 1);",
   },
   cardContainer: {
-    display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(500px, 1fr))",
-    gridGap: "30px",
-    alignItems: "center",
-    justifyItems: "center",
+    // display: "grid",
+    // gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))",
+    // gridGap: "15px",
+    // alignItems: "center",
+    // alignContent: "center",
+    // justifyItems: "center",
   },
   SetTitleWrapper: {
-    padding: "2rem",
+    paddingTop: "2rem",
   },
 });
 
@@ -40,23 +50,33 @@ const SetSection = ({ setTitle, setSets }) => {
 
   const renderCards = setSets.map((set, index) => {
     return (
-      <SetCards
-        setImage={set.image}
-        setTitle={set.title}
-        key={set.title}
-        setId={set.id}
-      />
+      <Grid
+        className={classes.gridItem}
+        item
+        xs={12}
+        sm={12}
+        md={6}
+        lg={4}
+        xl={4}
+      >
+        <SetCards
+          setImage={set.image}
+          setTitle={set.title}
+          key={set.title}
+          setId={set.id}
+        />
+      </Grid>
     );
   });
   return (
-    <div>
-      <Container className={classes.setSection} maxWidth="xl">
-        <div className={classes.SetTitleWrapper}>
-          <div className={classes.line}></div>
-          <h1 className={classes.title}>{setTitle}</h1>
-        </div>
-        <div className={classes.cardContainer}>{renderCards}</div>
-      </Container>
+    <div className={classes.something}>
+      <div className={classes.SetTitleWrapper}>
+        <div className={classes.line}></div>
+        <h1 className={classes.title}>{setTitle}</h1>
+      </div>
+      <Grid className={classes.gridContainer} container spacing={3}>
+        {renderCards}
+      </Grid>
     </div>
   );
 };

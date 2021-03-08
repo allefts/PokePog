@@ -1,12 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { makeStyles } from "@material-ui/core/styles";
+import styled from "styled-components";
 import OpenPack from "./OpenPack";
 
 // import pokemon from "pokemontcgsdk";
 // const API_KEY = "06e7f442-7fef-42f2-b382-94c7e94a56e3";
 // pokemon.configure({ apiKey: API_KEY });
+
+const StyledLoading = styled.div`
+  .loading-header {
+    font-size: 3rem;
+    font-family: LemonMilk;
+    text-align: center;
+    color: rgba(30, 159, 67, 1);
+  }
+`;
 
 const FetchCards = () => {
   const [cardsObject, setCardsObject] = useState([]);
@@ -17,12 +26,13 @@ const FetchCards = () => {
     await fetch(`https://api.pokemontcg.io/v2/cards?q=set.id:${id}`)
       .then(async (res) => await res.json())
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         setCardsObject(lookForRarity(result.totalCount, result));
       });
     setIsLoading(false);
   }, []);
 
+  //CARD OBJECT TO LOOK THROUGH
   let cardSpecs = [
     {
       rarity: "Common",
@@ -58,6 +68,7 @@ const FetchCards = () => {
 
     // console.log(raritiesFound);
 
+    //IF SET DOES NOT INCLUDE RARE OR UNCOMMON WHICH SOME DON'T FOR SOME REASON
     if (!raritiesFound.includes("Rare")) {
       cardSpecs[2].max = 0;
       cardSpecs[3].max = 2;
@@ -120,29 +131,17 @@ const FetchCards = () => {
     return cardsFound;
   }
 
-  // const renderCards = cardsObject.map((card, index) => {
-  //   return (
-  //     <div key={card.id}>
-  //       <img src={card.images.small} alt={card.name} />
-  //     </div>
-  //   );
-  // });
-
   return (
-    <div>
-      {/* <div className={classes.cardContainer}>{renderCards}</div> */}
-      {isLoading ? <h1>LOADING WAIT</h1> : <OpenPack pack={cardsObject} />}
-    </div>
+    <StyledLoading>
+      {isLoading ? (
+        <h1 className="loading-header">
+          LOADING YOUR <span style={{ color: "white" }}>POKEPACK</span>...
+        </h1>
+      ) : (
+        <OpenPack pack={cardsObject} />
+      )}
+    </StyledLoading>
   );
 };
-
-const useStyles = makeStyles({
-  cardContainer: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    flexFlow: "wrap row",
-  },
-});
 
 export default FetchCards;

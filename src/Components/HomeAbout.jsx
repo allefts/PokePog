@@ -1,9 +1,6 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-// import { Container } from "@material-ui/core";
 import homeBG from "../Assets/HomeBg.png";
-// import homeBG2 from "../Assets/homeBg2.png";
-// import homeBG3 from "../Assets/homeBg3.png";
 
 const useStyles = makeStyles({
   banner: {
@@ -16,7 +13,6 @@ const useStyles = makeStyles({
   homeHeader: {
     fontFamily: "LemonMilk",
     color: "black",
-    // backgroundColor: "rgba(245, 232, 111, 0.8);",
     backgroundColor: " rgba(30, 159, 67, .8)",
     position: "absolute",
     top: "50%",
@@ -29,12 +25,10 @@ const useStyles = makeStyles({
   },
   bgImage: {
     backgroundSize: "50%",
-    // backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center center",
     width: "100%",
     height: "100%",
-    // filter: "blur(1px)",
   },
   pokePog: {
     color: "white",

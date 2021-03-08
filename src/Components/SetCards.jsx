@@ -17,7 +17,6 @@ const useStyles = makeStyles({
     transition: "all .5s ease",
     "&:hover": {
       transform: "scaleX(1.1) scaleY(1.1)",
-      // backgroundColor: "rgba(245, 232, 111, 0.8);",
       backgroundColor: "#1e9f43",
     },
   },
@@ -25,10 +24,12 @@ const useStyles = makeStyles({
     width: "100%",
     height: "100%",
     margin: "0",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   cardMedia: {
     width: "60%",
-    margin: " 0 auto",
   },
 });
 
@@ -37,21 +38,19 @@ const SetCards = ({ setImage, setTitle, setId }) => {
   const history = useHistory();
   return (
     <Router>
-      <div>
-        <Card
-          className={classes.card}
-          onClick={() => history.push(`/sets/${setId}`)}
-        >
-          <CardActionArea className={classes.cardAction}>
-            <CardMedia
-              className={classes.cardMedia}
-              component="img"
-              image={setImage}
-              title={setTitle}
-            />
-          </CardActionArea>
-        </Card>
-      </div>
+      <Card
+        className={classes.card}
+        onClick={() => history.push(`/sets/${setId}`)}
+      >
+        <CardActionArea className={classes.cardAction}>
+          <CardMedia
+            className={classes.cardMedia}
+            component="img"
+            image={setImage}
+            title={setTitle}
+          />
+        </CardActionArea>
+      </Card>
     </Router>
   );
 };

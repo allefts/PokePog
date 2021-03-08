@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import backOfCard3 from "../Assets/backOfCard3.png";
 import styled from "styled-components";
-import Nav from "./Nav";
+// import Nav from "./Nav";
 
 const StyledPackOpening = styled.div`
   .packOpeningHeader {
@@ -29,7 +29,7 @@ const StyledPackOpening = styled.div`
   .card {
     width: 358px;
     height: 497px;
-    position: relative;
+    // position: relative;
     // position: absolute;
     // top: 50%;
     // left: 50%;
@@ -83,7 +83,7 @@ const StyledPackOpening = styled.div`
       //   box-shadow: 0px 5px 25px 15px #8c6fbf;
       //   box-shadow: 0px 5px 25px 15px #c7c520;
       //   box-shadow: 0px 5px 25px 25px #efeddd;
-      transform: scaleX(1.01) scaleY(1.01);
+      //   transform: scaleX(1.01) scaleY(1.01);
     }
   }
 `;
@@ -95,30 +95,33 @@ const StyledCard = styled.div`
   // position: absolute;
   // top: 50%;
   // left: 50%;
-  border-radius: 10px;
+  // transform: translate(-50%, 50%);
   transform-style: preserve-3d;
   border-radius: 20px;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   transition: all 1.5s ease;
 
-  &:hover {
-    box-shadow: ${(props) => {
-      if (props.rarity === "Common") {
-        return "0px 5px 25px 15px #efeddd";
-      } else if (props.rarity === "Uncommon") {
-        return "0px 5px 25px 15px #3387ff";
-      } else if (props.rarity === "Rare") {
-        return "0px 5px 25px 20px #8c6fbf";
-      } else {
-        return "0px 5px 25px 20px #c7c520";
-      }
-    }}
+  .backOfCard{
+      &:hover {
+        box-shadow: ${(props) => {
+          if (props.rarity === "Common") {
+            return "0px 5px 25px 15px #efeddd";
+          } else if (props.rarity === "Uncommon") {
+            return "0px 5px 25px 15px #3387ff";
+          } else if (props.rarity === "Rare") {
+            return "0px 5px 25px 20px #8c6fbf";
+          } else {
+            return "0px 5px 25px 20px #c7c520";
+          }
+        }}
+  }
 `;
 
 const allCards = document.getElementsByClassName("card");
 
 const OpenPack = ({ pack }) => {
   const [cardFronts, setCardFronts] = useState([]);
+  const [moveCard, setMoveCard] = useState([false]);
 
   useEffect(() => {
     setCardFronts(pack);
@@ -127,31 +130,15 @@ const OpenPack = ({ pack }) => {
 
   let raritiesInPack = [];
 
-  const rarityBoxShadows = [
-    {
-      rarity: "Common",
-      boxShadow: "box-shadow: 0 5px 15px 20px 5px rgba(145, 92, 182, .4)",
-    },
-    {
-      rarity: "Uncommon",
-      boxShadow: "box-shadow: 0px 5px 20px 5px #3387ff",
-    },
-    {
-      rarity: "Rare",
-      boxShadow: "box-shadow: 0px 5px 20px 5px #8c6fbf",
-    },
-    {
-      rarity: "SUPER DUPER RARE",
-      boxShadow: "box-shadow: 0px 5px 20px 5px #c7c520",
-    },
-  ];
-
   const handleCardFlip = (index) => {
-    allCards[index].classList.toggle("flipped");
+    if (!allCards[index].classList.contains("flipped")) {
+      allCards[index].classList.toggle("flipped");
+    }
   };
 
   const renderCards = cardFronts.map((cardFront, index) => {
     raritiesInPack.push(cardFront.rarity);
+
     return (
       <StyledCard
         className="card"
@@ -178,9 +165,9 @@ const OpenPack = ({ pack }) => {
 
   return (
     <StyledPackOpening>
-      <div className="packNav">
+      {/* <div className="packNav">
         <h1 className="packNavHeader">PACKS</h1>
-      </div>
+      </div> */}
       <div className="packOpeningHeader">
         <div className="card-container">{renderCards}</div>
       </div>
