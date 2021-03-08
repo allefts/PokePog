@@ -125,7 +125,7 @@ const OpenPack = ({ pack }) => {
 
   useEffect(() => {
     setCardFronts(pack);
-    console.log(pack);
+    // console.log(pack);
   }, []);
 
   let raritiesInPack = [];
