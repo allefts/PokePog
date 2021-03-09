@@ -58,6 +58,7 @@ const SetSection = ({ setTitle, setSets }) => {
         md={6}
         lg={4}
         xl={4}
+        key={set.title}
       >
         <SetCards
           setImage={set.image}

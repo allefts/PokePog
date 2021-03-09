@@ -72,6 +72,7 @@ const useStyles = makeStyles({
 const SetCards = ({ setImage, setTitle, setId }) => {
   const classes = useStyles();
   const history = useHistory();
+  console.log(history);
   return (
     <Router>
       <Card
