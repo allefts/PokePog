@@ -6,7 +6,7 @@ import styled from "styled-components";
 const StyledPackOpening = styled.div`
   .packOpeningHeader {
     height: 100vh;
-    margin-top: 5rem;
+    margin-top: 2rem;
   }
 
   .packNav {
@@ -122,11 +122,10 @@ const allCards = document.getElementsByClassName("card");
 
 const OpenPack = ({ pack }) => {
   const [cardFronts, setCardFronts] = useState([]);
-  const [moveCard, setMoveCard] = useState([false]);
 
   useEffect(() => {
     setCardFronts(pack);
-    console.log(pack);
+    // console.log(pack);
   }, []);
 
   let raritiesInPack = [];
@@ -142,18 +141,13 @@ const OpenPack = ({ pack }) => {
 
     return (
       <StyledCard
+        key={cardFront.name}
         className="card"
         onClick={() => {
           handleCardFlip(index);
         }}
         rarity={cardFront.rarity}
       >
-        {/* <div */}
-        {/* // className="card" */}
-        {/* onClick={() => { */}
-        {/* handleCardFlip(index); */}
-        {/* }} */}
-        {/* > */}
         <div className="backOfCard"></div>
         <div
           className="frontOfCard"

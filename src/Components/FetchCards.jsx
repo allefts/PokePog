@@ -21,6 +21,7 @@ const FetchCards = () => {
   const [cardsObject, setCardsObject] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
+  console.log(id);
 
   useEffect(async () => {
     await fetch(`https://api.pokemontcg.io/v2/cards?q=set.id:${id}`)
