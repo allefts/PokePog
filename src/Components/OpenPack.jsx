@@ -6,6 +6,7 @@ import styled from "styled-components";
 const StyledPackOpening = styled.div`
   .packOpeningHeader {
     height: 100vh;
+    margin-top: 5rem;
   }
 
   .packNav {
@@ -27,15 +28,15 @@ const StyledPackOpening = styled.div`
   }
 
   .card {
-    width: 358px;
-    height: 497px;
+    width: 280px;
+    height: 400px;
+    margin: 0 auto;
     // position: relative;
     // position: absolute;
     // top: 50%;
     // left: 50%;
-    border-radius: 10px;
     transform-style: preserve-3d;
-    border-radius: 20px;
+    border-radius: 10px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
     transition: all 1.5s ease;
   }
@@ -125,7 +126,7 @@ const OpenPack = ({ pack }) => {
 
   useEffect(() => {
     setCardFronts(pack);
-    // console.log(pack);
+    console.log(pack);
   }, []);
 
   let raritiesInPack = [];

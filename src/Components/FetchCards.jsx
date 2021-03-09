@@ -29,6 +29,7 @@ const FetchCards = () => {
         // console.log(result);
         setCardsObject(lookForRarity(result.totalCount, result));
       });
+
     setIsLoading(false);
   }, []);
 
@@ -65,8 +66,6 @@ const FetchCards = () => {
         raritiesFound.push(rarityOfCard.rarity);
       }
     }
-
-    // console.log(raritiesFound);
 
     //IF SET DOES NOT INCLUDE RARE OR UNCOMMON WHICH SOME DON'T FOR SOME REASON
     if (!raritiesFound.includes("Rare")) {
