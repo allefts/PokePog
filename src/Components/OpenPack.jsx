@@ -100,6 +100,29 @@ const StyledPackOpening = styled.div`
       //   transform: scaleX(1.01) scaleY(1.01);
     }
   }
+
+  .btn-wrapper {
+    display: flex;
+
+    justify-content: center;
+  }
+
+  .openAnother-btn {
+    font-family: LemonMilk;
+    padding: 10px 20px;
+    margin: 0;
+    cursor: pointer;
+    background: rgba(30, 159, 67, 0.6);
+    color: black;
+    border: none;
+    border-bottom: 4px solid black;
+    transition: all 0.5ms;
+    text-decoration: none;
+    outline: none;
+    &:hover {
+      border-bottom: 4px solid white;
+    }
+  }
 `;
 
 const StyledCard = styled.div`
@@ -136,6 +159,7 @@ const allCards = document.getElementsByClassName("card");
 const OpenPack = () => {
   const [cardFronts, setCardFronts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [openAnother, setOpenAnother] = useState(0);
   const { id } = useParams();
 
   useEffect(async () => {
@@ -143,16 +167,7 @@ const OpenPack = () => {
       setCardFronts(res);
     });
     setIsLoading(false);
-
-    // await fetch(`https://api.pokemontcg.io/v2/cards?q=set.id:${id}`)
-    //   .then(async (res) => await res.json())
-    //   .then((result) => {
-    //     // console.log(result);
-    //     setCardsObject(lookForRarity(result.totalCount, result));
-    //   });
-
-    // setCardsObject(validateID(id));
-  }, []);
+  }, [openAnother]);
 
   let raritiesInPack = [];
 
@@ -179,7 +194,6 @@ const OpenPack = () => {
           className="frontOfCard"
           style={{ backgroundImage: `url(${cardFront.images.small})` }}
         ></div>
-        {/* </div> */}
       </StyledCard>
     );
   });
@@ -195,6 +209,14 @@ const OpenPack = () => {
           <div className="packOpeningHeader">
             <div className="card-container">{renderCards}</div>
           </div>
+          {/* <div className="btn-wrapper">
+            <button
+              className="openAnother-btn"
+              onClick={() => setOpenAnother(openAnother + 1)}
+            >
+              Open Another
+            </button>
+          </div> */}
         </StyledPackOpening>
       )}
     </StyledLoading>

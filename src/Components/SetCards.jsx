@@ -86,14 +86,14 @@ const SetCards = ({ setImage, setTitle, setId }) => {
             title={setTitle}
           />
         </CardActionArea>
-        <StyledCard>
+        {/* <StyledCard>
           <h2 className="cardHoverHeader">{setTitle}</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae
             rerum quis tempore et quos inventore possimus tenetur ex ducimus
             soluta.
           </p>
-        </StyledCard>
+        </StyledCard> */}
       </Card>
     </Router>
   );
