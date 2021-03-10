@@ -22,11 +22,11 @@ const StyledCard = styled.div`
 
     & > *{
       transform: translateY(20px);
-      transition: transform .8s;
+      transition: transform .5s;
     }
 
     &:hover > *{
-      transform: translateY(0);
+      transform: translateY(-20px);
     }
 
     &:hover{
@@ -72,7 +72,6 @@ const useStyles = makeStyles({
 const SetCards = ({ setImage, setTitle, setId }) => {
   const classes = useStyles();
   const history = useHistory();
-  console.log(history);
   return (
     <Router>
       <Card

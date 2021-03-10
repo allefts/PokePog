@@ -34,7 +34,7 @@ const StyledFooter = styled.div`
 
 
   .footer-description {
-    font-family: LemonMilk;
+    font-family: Montserrat;
     font-size: 1.2em;
     margin-left: 5px;
   }

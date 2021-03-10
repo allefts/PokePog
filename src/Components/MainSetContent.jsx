@@ -1,9 +1,7 @@
 import React from "react";
 import SetSection from "./SetSection";
-import { Container } from "@material-ui/core";
 import allSets from "../Sets/allSets";
 import styled from "styled-components";
-import Footer from "./Footer";
 
 const StyledMainWrapper = styled.div``;
 
@@ -18,11 +16,7 @@ const MainSetContent = () => {
     );
   });
 
-  return (
-    <StyledMainWrapper>{displaySetTitles}</StyledMainWrapper>
-    // {/* <div className="main" maxWidth="xl"> */}
-    // {/* </div> */}
-  );
+  return <StyledMainWrapper>{displaySetTitles}</StyledMainWrapper>;
 };
 
 export default MainSetContent;
