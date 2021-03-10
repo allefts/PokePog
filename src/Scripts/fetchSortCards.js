@@ -64,7 +64,7 @@ const raritySearch = (entireSet) => {
     }
   }
 
-  console.log(raritiesFound);
+  //   console.log(raritiesFound);
   switch (checkRarities(raritiesFound)) {
     case 2: //RARITY MISSING SET
       handleDifferentRarities(raritiesFound);
@@ -128,7 +128,7 @@ const addToPack = (entireSet, rarity, cardsFound, max, maybeShiny) => {
       energyCardFound === false &&
       entireSet[randomNum].supertype === "Energy"
     ) {
-      console.log("FOUND ENERGY");
+      //   console.log("FOUND ENERGY");
       energyCardFound = true;
       cardsFound.push(entireSet[randomNum]);
     } else if (

@@ -4,7 +4,7 @@ import MainSetContent from "./Components/MainSetContent";
 import SetHeader from "./Components/SetHeader";
 import HomeAbout from "./Components/HomeAbout";
 import HomeDescription from "./Components/HomeDescription";
-import FetchCards from "./Components/FetchCards";
+import OpenPack from "./Components/OpenPack";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 const App = () => {
@@ -25,7 +25,8 @@ const App = () => {
           </Route>
           <Route exact path="/sets/:id">
             <Nav title="POKEPAX" />
-            <FetchCards />
+            {/* <FetchCards /> */}
+            <OpenPack />
           </Route>
         </Switch>
       </Router>

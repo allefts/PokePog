@@ -1,7 +1,20 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import backOfCard3 from "../Assets/backOfCard3.png";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import validateID from "../Scripts/fetchSortCards";
+
 // import Nav from "./Nav";
+
+const StyledLoading = styled.div`
+  .loading-header {
+    font-size: 3rem;
+    font-family: LemonMilk;
+    text-align: center;
+    color: rgba(30, 159, 67, 1);
+  }
+`;
 
 const StyledPackOpening = styled.div`
   .packOpeningHeader {
@@ -120,12 +133,25 @@ const StyledCard = styled.div`
 
 const allCards = document.getElementsByClassName("card");
 
-const OpenPack = ({ pack }) => {
+const OpenPack = () => {
   const [cardFronts, setCardFronts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const { id } = useParams();
 
-  useEffect(() => {
-    setCardFronts(pack);
-    // console.log(pack);
+  useEffect(async () => {
+    await validateID(id).then((res) => {
+      setCardFronts(res);
+    });
+    setIsLoading(false);
+
+    // await fetch(`https://api.pokemontcg.io/v2/cards?q=set.id:${id}`)
+    //   .then(async (res) => await res.json())
+    //   .then((result) => {
+    //     // console.log(result);
+    //     setCardsObject(lookForRarity(result.totalCount, result));
+    //   });
+
+    // setCardsObject(validateID(id));
   }, []);
 
   let raritiesInPack = [];
@@ -159,14 +185,19 @@ const OpenPack = ({ pack }) => {
   });
 
   return (
-    <StyledPackOpening>
-      {/* <div className="packNav">
-        <h1 className="packNavHeader">PACKS</h1>
-      </div> */}
-      <div className="packOpeningHeader">
-        <div className="card-container">{renderCards}</div>
-      </div>
-    </StyledPackOpening>
+    <StyledLoading>
+      {isLoading ? (
+        <h1 className="loading-header">
+          LOADING YOUR <span style={{ color: "white" }}>POKEPACK</span>...
+        </h1>
+      ) : (
+        <StyledPackOpening>
+          <div className="packOpeningHeader">
+            <div className="card-container">{renderCards}</div>
+          </div>
+        </StyledPackOpening>
+      )}
+    </StyledLoading>
   );
 };
 
