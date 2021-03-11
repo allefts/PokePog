@@ -71,24 +71,23 @@ const useStyles = makeStyles({
 
 const SetCards = ({ setImage, setTitle, setId }) => {
   const classes = useStyles();
-  // const history = useHistory();
+  const history = useHistory();
   return (
     <Router>
       {/* <Link to={`/sets/${setId}`}> */}
-      <a href={`/sets/${setId}`}>
-        <Card
-          className={classes.card}
-          // onClick={() => history.push(`/sets/${setId}`)}
-        >
-          <CardActionArea className={classes.cardAction}>
-            <CardMedia
-              className={classes.cardMedia}
-              component="img"
-              image={setImage}
-              title={setTitle}
-            />
-          </CardActionArea>
-          {/* <StyledCard>
+      <Card
+        className={classes.card}
+        onClick={() => history.push(`/sets/${setId}`)}
+      >
+        <CardActionArea className={classes.cardAction}>
+          <CardMedia
+            className={classes.cardMedia}
+            component="img"
+            image={setImage}
+            title={setTitle}
+          />
+        </CardActionArea>
+        {/* <StyledCard>
           <h2 className="cardHoverHeader">{setTitle}</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae
@@ -96,8 +95,7 @@ const SetCards = ({ setImage, setTitle, setId }) => {
             soluta.
           </p>
         </StyledCard> */}
-        </Card>
-      </a>
+      </Card>
       {/* </Link> */}
     </Router>
   );
