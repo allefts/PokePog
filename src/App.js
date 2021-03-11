@@ -25,7 +25,6 @@ const App = () => {
           </Route>
           <Route exact path="/sets/:id">
             <Nav title="POKEPAX" />
-            {/* <FetchCards /> */}
             <OpenPack />
           </Route>
         </Switch>

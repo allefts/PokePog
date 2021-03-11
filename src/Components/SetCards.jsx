@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardMedia, CardActionArea } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { BrowserRouter as Router, useHistory } from "react-router-dom";
+import { BrowserRouter as Router, useHistory, Link } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledCard = styled.div`
@@ -71,22 +71,24 @@ const useStyles = makeStyles({
 
 const SetCards = ({ setImage, setTitle, setId }) => {
   const classes = useStyles();
-  const history = useHistory();
+  // const history = useHistory();
   return (
     <Router>
-      <Card
-        className={classes.card}
-        onClick={() => history.push(`/sets/${setId}`)}
-      >
-        <CardActionArea className={classes.cardAction}>
-          <CardMedia
-            className={classes.cardMedia}
-            component="img"
-            image={setImage}
-            title={setTitle}
-          />
-        </CardActionArea>
-        {/* <StyledCard>
+      {/* <Link to={`/sets/${setId}`}> */}
+      <a href={`/sets/${setId}`}>
+        <Card
+          className={classes.card}
+          // onClick={() => history.push(`/sets/${setId}`)}
+        >
+          <CardActionArea className={classes.cardAction}>
+            <CardMedia
+              className={classes.cardMedia}
+              component="img"
+              image={setImage}
+              title={setTitle}
+            />
+          </CardActionArea>
+          {/* <StyledCard>
           <h2 className="cardHoverHeader">{setTitle}</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae
@@ -94,7 +96,9 @@ const SetCards = ({ setImage, setTitle, setId }) => {
             soluta.
           </p>
         </StyledCard> */}
-      </Card>
+        </Card>
+      </a>
+      {/* </Link> */}
     </Router>
   );
 };
