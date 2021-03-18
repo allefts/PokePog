@@ -1,4 +1,4 @@
-#POKEPAX
+# POKEPAX
 
 ## A Pokemon pack opening simulator!
 
